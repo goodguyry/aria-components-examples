@@ -1,5 +1,6 @@
 @use '~scss/core/a11y';
 @use '~scss/core/breakpoints' as *;
+@use '~scss/core/theme';
 @use '~scss/core/utilities' as *;
 
 .dialog {
@@ -31,8 +32,9 @@
   }
 }
 
-.link {
-  @include a11y.role-button;
+.button {
+  @include button-reset;
+  @include theme.button;
 }
 
 .closeButton {

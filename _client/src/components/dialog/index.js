@@ -1,22 +1,22 @@
 import getClassnames from 'js/getClassnames';
-import { Dialog } from 'aria-components';
+import logEventDetail from 'js/logEventDetail';
+import Dialog from 'aria-components/dialog';
 import './dialog.scss';
 
 // Get the components hashed classnames.
-const { link, closeButton } = getClassnames(siteClassNames.dialog);
+const { closeButton } = getClassnames(siteClassNames.dialog);
 
 window.addEventListener('load', () => {
   // Get the elements.
-  const controller = document.querySelector(link);
   const target = document.getElementById('dialog');
   const close = document.querySelector(closeButton);
-  const content = document.querySelector('.site');
+
+  // Report event details.
+  target.addEventListener('init', logEventDetail);
+  target.addEventListener('stateChange', logEventDetail);
+  target.addEventListener('destroy', logEventDetail);
 
   // Create the Dialog.
-  const dialog = new Dialog({ // eslint-disable-line no-unused-vars
-    controller,
-    target,
-    close,
-    content,
-  });
+  const dialog = new Dialog(target);
+  dialog.closeButton = close;
 });

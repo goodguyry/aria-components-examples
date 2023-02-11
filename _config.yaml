@@ -2,7 +2,7 @@
 title: 'Aria Components Examples'
 repo: https://github.com/goodguyry/aria-components-examples
 baseurl: /aria-components-examples
-version: 0.3.1
+version: 1.0.0
 
 # Development/Serve
 port: 8080

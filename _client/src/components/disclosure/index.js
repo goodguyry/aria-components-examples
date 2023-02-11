@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import getClassnames from 'js/getClassnames';
-import { Disclosure } from 'aria-components';
+import logEventDetail from 'js/logEventDetail';
+import Disclosure from 'aria-components/disclosure';
 import './disclosure.scss';
 
 // Get the components hashed classnames.
@@ -7,15 +9,16 @@ const { button, info } = getClassnames(siteClassNames.disclosure);
 
 // Get the elements.
 const controllers = document.querySelectorAll(button);
-const targets = document.querySelectorAll(info);
 
 // Create the Disclosures.
-if (controllers.length === targets.length) {
-  // eslint-disable-next-line no-unused-vars
-  const maps = Array.prototype.map.call(controllers, (controller, index) => (
-    new Disclosure({ controller, target: targets[index] })
-  ));
-}
+const disclosures = Array.from(controllers).map((controller) => {
+  // Report event details.
+  controller.addEventListener('init', logEventDetail);
+  controller.addEventListener('stateChange', logEventDetail);
+  controller.addEventListener('destroy', logEventDetail);
+
+  return new Disclosure(controller);
+});
 
 window.addEventListener('load', disclosureHashCheck);
 window.addEventListener('hashchange', disclosureHashCheck);

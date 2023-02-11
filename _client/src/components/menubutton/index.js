@@ -1,5 +1,5 @@
 import getClassnames from 'js/getClassnames';
-import { MenuButton } from 'aria-components';
+import MenuButton from 'aria-components/menubutton';
 import './menubutton.scss';
 
 // Get the components hashed classnames.

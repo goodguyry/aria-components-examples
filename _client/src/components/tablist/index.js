@@ -1,19 +1,22 @@
+/* eslint-disable no-unused-vars */
 import getClassnames from 'js/getClassnames';
-import { Tablist } from 'aria-components';
+import logEventDetail from 'js/logEventDetail';
+import Tablist, { AutomaticActivation } from 'aria-components/tablist';
 import './tablist.scss';
 
 // Get the components hashed classnames.
-const { list, panel } = getClassnames(siteClassNames.tablist);
+const { list } = getClassnames(siteClassNames.tablist);
 
 // Get the elements.
 const tabs = document.querySelector(list);
-const panels = document.querySelectorAll(panel);
 
 // Create the Tablist.
-const tablist = new Tablist({ // eslint-disable-line no-unused-vars
-  tabs,
-  panels,
-});
+const tablist = new Tablist(tabs, { modules: AutomaticActivation });
+
+// Report event details.
+tabs.addEventListener('init', logEventDetail);
+tabs.addEventListener('stateChange', logEventDetail);
+tabs.addEventListener('destroy', logEventDetail);
 
 window.addEventListener('load', tablistHashCheck);
 window.addEventListener('hashchange', tablistHashCheck);
