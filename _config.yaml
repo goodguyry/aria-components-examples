@@ -11,6 +11,7 @@ port: 8080
 markdown: kramdown
 highlighter: rouge
 include: [_pages]
+exclude: [README.md, package.json, package-lock.json, babel.config.json]
 timezone: America/Los_Angeles
 
 # kramdown settings
